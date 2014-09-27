@@ -1,0 +1,166 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	color: #fff;
+	font-family: Arial;
+	font-size: 12px;
+}
+
+.body {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url('/static/HSNU-Sky.jpg');
+	background-size: cover;
+	z-index: 0;
+}
+
+.grad {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+}
+
+.header div img {
+	width: 180px;
+}
+
+@media screen and (min-width: 1000px) {
+	.header {
+		position: absolute;
+		top: calc(50% - 35px);
+		left: calc(50% - 255px);
+		z-index: 2;
+	}
+
+	.header div {
+		float: left;
+	}
+
+	.header div img {
+		width: 180px;
+	}
+
+	.login {
+		position: absolute;
+		top: calc(50% - 75px);
+		left: calc(50% - 50px);
+		height: 150px;
+		width: 350px;
+		padding: 10px;
+		z-index: 2;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.header {
+		z-index: 2;
+		position: absolute;
+		top: calc(50% - 120px);
+		left: calc(50% - 90px);
+	}
+
+	.login {
+		position: absolute;
+		top: calc(50% - 30px);
+		left: calc(50% - 145px);
+		height: 150px;
+		width: 250px;
+		padding: 10px;
+		z-index: 2;
+	}
+}
+
+.login input[type=text] {
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+.login input[type=password] {
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+.login input[type=submit] {
+	width: 260px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #a18d6c;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+.login input[type=submit] {
+	transition: opacity 0.3s;
+}
+
+.login input[type=submit]:hover {
+	opacity: 0.8;
+}
+
+.login input[type=submit]:active {
+	opacity: 0.6;
+}
+
+.login input[type=text] {
+	transition: outline 0.3s, border 0.3s;
+}
+
+.login input[type=text]:focus {
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=password] {
+	transition: outline 0.3s, border 0.3s;
+}
+
+.login input[type=password]:focus {
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=button]:focus {
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder {
+   color: rgba(255,255,255,0.6);
+}
+
+.error {
+	font-size: 15px;
+	color: #FCC;
+}

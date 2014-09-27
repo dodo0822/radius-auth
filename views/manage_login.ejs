@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Wifidog RADIUS Management</title>
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/manage_login.css">
+		<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/static/prefixfree.min.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<h2>Manage</h2>
+			<form method="POST" action="/manage/login">
+				<input type="text" name="username" placeholder="Username" autofocus required>
+				<input type="password" name="password" placeholder="Password" required>
+				<button class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>

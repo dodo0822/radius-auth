@@ -1,0 +1,17 @@
+{
+  "name": "radius-devel",
+  "version": "0.1.0",
+  "description": "Wifidog RADIUS auth server",
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
