@@ -1,5 +1,5 @@
 {
-  "name": "radius-devel",
+  "name": "radius-auth",
   "version": "0.1.0",
   "description": "Wifidog RADIUS auth server",
   "main": "server.js",
