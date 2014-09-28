@@ -1,0 +1,32 @@
+<% include header %>
+<% include sidebar %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">Management Accounts</h1>
+	<h2 class="sub-header">List</h2>
+	<p><a class="btn btn-primary" href="/manage/account/add">Add a new user</a></p>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Last login time</th>
+					<th>Last login IP</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% users.forEach(function(row){ %>
+					<tr>
+						<td><%= row.username %></td>
+						<td><%= row.lastLogin %></td>
+						<td><%= row.lastLoginIp %></td>
+						<td><a href="/manage/account/edit?id=<%= row._id %>">Edit</a> | <a href="/manage/account/delete?id=<%= row._id %>" onclick="return confirm('Are you sure?');">Delete</a></td>
+					</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+</div>
+<% include footer %>

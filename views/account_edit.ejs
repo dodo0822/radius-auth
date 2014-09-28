@@ -1,0 +1,28 @@
+<% include header %>
+<% include sidebar %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">Management Accounts</h1>
+	<h2 class="sub-header">Edit user '<%= user.username %>'</h2>
+	<form role="form" method="post" action="/manage/account/edit">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-3"><label>Username</label></div>
+				<div class="col-sm-9"><p><%= user.username %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3"><label for="password">Password</label></div>
+				<div class="col-sm-9"><input type="password" class="form-control" name="password" id="password" placeholder="Password..."></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3"><label for="password-repeat">Repeat</label></div>
+				<div class="col-sm-9"><input type="password" class="form-control" name="passwordRepeat" id="password-repeat" placeholder="Repeat password..."></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3"><button class="btn btn-primary">Submit</button><input type="hidden" name="id" value="<%= user._id %>"></div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</div>
+<% include footer %>

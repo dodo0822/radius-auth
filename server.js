@@ -182,7 +182,91 @@ app.post('/manage/login', function(req, res){
 
 app.get('/manage/home', util.checkLogin, function(req, res){
 	db.Token.find({}).sort('-date').limit(20).exec(function(err, tokens){
-		res.render('home', { recent: tokens });
+		res.render('home', { recent: tokens, pageDashboard: true });
+	});
+});
+
+app.get('/manage/account', util.checkLogin, function(req, res){
+	db.User.find({}).sort('username').exec(function(err, users){
+		res.render('account', { users: users, pageAccount: true });
+	});
+});
+
+app.get('/manage/account/add', util.checkLogin, function(req, res){
+	res.render('account_add', { pageAccount: true });
+});
+
+app.post('/manage/account/add', util.checkLogin, function(req, res){
+	if(req.body.username && req.body.password){
+		if(req.body.password !== req.body.passwordRepeat){
+			res.redirect('/manage/account/add?msg=repeat');
+			return;
+		}
+		var username = req.body.username;
+		var password = req.body.password;
+		db.User.findOne({ username: username }, function(err, user){
+			if(user){
+				res.redirect('/manage/account/add?msg=exist');
+				return;
+			}
+			var user = new db.User({
+				username: username,
+				password: util.hash(password)
+			});
+			user.save(function(err){
+				res.redirect('/manage/account?msg=add');
+			});
+		});
+	} else {
+		res.redirect('/manage/account/add?msg=blank');
+	}
+});
+
+app.get('/manage/account/delete', util.checkLogin, function(req, res){
+	if(!req.query.id){
+		res.redirect('/manage/account');
+		return;
+	}
+	var id = req.query.id;
+	db.User.remove({ _id: id }, function(err){
+		res.redirect('/manage/account?msg=delete');
+	});
+});
+
+app.get('/manage/account/edit', util.checkLogin, function(req, res){
+	if(!req.query.id){
+		res.redirect('/manage/account');
+		return;
+	}
+	var id = req.query.id;
+	db.User.findOne({ _id: id }, function(err, user){
+		if(!user){
+			res.redirect('/manage/account');
+			return;
+		}
+		res.render('account_edit', { pageAccount: true, user: user });
+	});
+});
+
+app.post('/manage/account/edit', util.checkLogin, function(req, res){
+	if(!req.body.id || !req.body.password || !req.body.passwordRepeat){
+		res.redirect('/manage/account');
+		return;
+	}
+	if(req.body.password !== req.body.passwordRepeat){
+		res.redirect('/manage/account/edit?id=' + req.body.id + '&msg=repeat');
+		return;
+	}
+	var id = req.body.id;
+	db.User.findOne({ _id: id }, function(err, user){
+		if(!user){
+			res.redirect('/manage/account');
+			return;
+		}
+		user.password = util.hash(req.body.password);
+		user.save(function(err){
+			res.redirect('/manage/account?msg=edit');
+		});
 	});
 });
 
