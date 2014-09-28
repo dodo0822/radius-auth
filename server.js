@@ -5,6 +5,8 @@ var radius = require('radius');
 var dgram = require('dgram');
 var hat = require('hat');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var db = require('./db');
 var util = require('./util');
 var portPool = require('./port-pool');
@@ -21,6 +23,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/static', express.static(__dirname + '/static'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.set('view engine', 'ejs');
+app.use(session({
+	secret: 'keyboard cat',
+	store: new MongoStore({
+		db: 'radius'
+	}),
+	resave: true,
+	saveUninitialized: true
+}));
 app.disable('x-powered-by');
 
 app.get('/ping', function(req, res){
@@ -142,6 +152,38 @@ app.get('/portal', function(req, res){
 
 app.get('/manage/login', function(req, res){
 	res.render('manage_login');
+});
+
+app.get('/manage/logout', function(req, res){
+	req.session.destroy();
+	res.redirect('/manage');
+});
+
+app.get('/manage', function(req, res){
+	res.redirect('/manage/home');
+});
+
+app.post('/manage/login', function(req, res){
+	var username = req.body.username;
+	var password = util.hash(req.body.password);
+	db.User.findOne({ username: username, password: password }, function(err, user){
+		if(!user){
+			res.redirect('/manage/login?msg=denied');
+		} else {
+			req.session.username = req.body.username;
+			user.lastLogin = new Date();
+			user.lastLoginIp = req.ip;
+			user.save(function(err){
+				res.redirect('/manage/home');
+			});
+		}
+	});
+});
+
+app.get('/manage/home', util.checkLogin, function(req, res){
+	db.Token.find({}).sort('-date').limit(20).exec(function(err, tokens){
+		res.render('home', { recent: tokens });
+	});
 });
 
 app.use(function(req, res){

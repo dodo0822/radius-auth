@@ -6,5 +6,13 @@ module.exports = {
 		sha256.update(str, 'utf8');
 		var result = sha256.digest('base64');
 		return result;
+	},
+	checkLogin: function(req, res, next){
+		if(!req.session.username){
+			res.redirect('/manage/login');
+		} else {
+			res.locals.username = req.session.username;
+			return next();
+		}
 	}
 };

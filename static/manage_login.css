@@ -1,0 +1,15 @@
+body {
+	background-color: #F0EEEE;
+}
+
+#main {
+	width: 300px;
+	height: 230px;
+	position: absolute;
+	top: calc(35% - 100px);
+	left: calc(50% - 150px);
+	background-color: #FFF;
+	padding: 15px;
+	border-radius: 5px;
+	text-align: center;
+}

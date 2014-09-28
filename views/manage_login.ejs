@@ -13,9 +13,15 @@
 		<div id="main">
 			<h2>Manage</h2>
 			<form method="POST" action="/manage/login">
-				<input type="text" name="username" placeholder="Username" autofocus required>
-				<input type="password" name="password" placeholder="Password" required>
-				<button class="btn btn-primary">Submit</button>
+				<div class="form-group">
+					<input type="text" class="form-control" name="username" placeholder="Username" autofocus required>
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="password" placeholder="Password" required>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary">Submit</button>
+				</div>
 			</form>
 		</div>
 	</body>
