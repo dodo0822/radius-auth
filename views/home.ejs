@@ -9,6 +9,7 @@
 				<tr>
 					<th>IP</th>
 					<th>MAC Address</th>
+					<th>Username</th>
 					<th>Time</th>
 					<th>Actions</th>
 				</tr>
@@ -18,6 +19,7 @@
 					<tr>
 						<td><%= row.ip %></td>
 						<td><%= row.mac %></td>
+						<td><%= row.username %></td>
 						<td><%= row.time %></td>
 						<td><a href="/manage/block/add?mac=<%= row.mac %>">Block</a></td>
 					</tr>
