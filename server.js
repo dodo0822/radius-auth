@@ -108,7 +108,7 @@ app.post('/validate', function(req, res){
 		client.send(encoded, 0, encoded.length, config.port, config.host);
 	} else {
 		var token = hat();
-		console.log('[login] User ' + req.body.username + ' successfully logged in');
+		console.log('[login-test] User ' + req.body.username + ' successfully logged in');
 		var tokObj = new db.Token({
 			token: token,
 			ip: req.ip,
@@ -181,7 +181,7 @@ app.post('/manage/login', function(req, res){
 });
 
 app.get('/manage/home', util.checkLogin, function(req, res){
-	db.Token.find({}).sort('-date').limit(20).exec(function(err, tokens){
+	db.Token.find({}).sort('-time').limit(20).exec(function(err, tokens){
 		res.render('home', { recent: tokens, pageDashboard: true });
 	});
 });
