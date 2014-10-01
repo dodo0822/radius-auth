@@ -111,3 +111,8 @@ body {
 .form-group .row {
 	margin-bottom: 7px;
 }
+
+.input-group {
+	margin-bottom: 7px;
+	max-width: 400px;
+}

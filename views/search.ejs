@@ -1,0 +1,27 @@
+<% include header %>
+<% include sidebar %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">Login Records</h1>
+	<h2 class="sub-header">Search</h2>
+	<form method="POST" action="/manage/search">
+		<div class="input-group">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id="current-key"></span> <span class="caret"></span></button>
+				<ul class="dropdown-menu" id="keys" role="menu">
+					<li><a href="javascript:void(0)" data-key="username">Username</a></li>
+					<li><a href="javascript:void(0)" data-key="ip">IP Address</a></li>
+					<li><a href="javascript:void(0)" data-key="mac">MAC Address</a></li>
+				</ul>
+			</div>
+			<input type="text" class="form-control" name="value">
+		</div>
+		<div class="input-group">
+			<button type="button" class="btn btn-primary">Search</button>
+			<input type="hidden" name="key" id="key-field">
+		</div>
+	</form>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="/static/search.js"></script>
+<% include footer %>

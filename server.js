@@ -270,6 +270,10 @@ app.post('/manage/account/edit', util.checkLogin, function(req, res){
 	});
 });
 
+app.get('/manage/search', util.checkLogin, function(req, res){
+	res.render('search', { pageSearch: true });
+});
+
 app.use(function(req, res){
 	res.send('Not found.', 404);
 });
